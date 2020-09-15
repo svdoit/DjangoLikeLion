@@ -22,3 +22,20 @@ def guestbook(request):
 def blogDetailView(request, blog_id):
     blog_detail = get_object_or_404(Blog, pk=blog_id)
     return render(request, 'blogDetail.html', {'blog_detail':blog_detail})
+
+
+def blogNewView(request):
+    return render(request, 'blogNew.html')
+
+def blogCreateView(request):
+    if request.method == "POST":
+        blog_create = Blog()
+
+        blog_create.title = request.POST.get('title')
+        blog_create.body = request.POST.get('body')
+        blog_create.writer = request.POST.get('writer')
+        blog_create.pub_date = timezone.datetime.now()
+        blog_create.image = request.FILES.get('image')
+        blog_create.save()
+
+        return redirect('/guestbook/'+str(blog_create.id))
