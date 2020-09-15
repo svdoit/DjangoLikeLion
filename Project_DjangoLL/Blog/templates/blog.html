@@ -1,5 +1,8 @@
-<!DOCTYPE html>
 {% load static %}
+{% load socialaccount %}
+{% providers_media_js %}
+
+<!DOCTYPE html>
 <head>
 <!-- CSS only -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -22,6 +25,29 @@
         </div>
     </section>
 
+    <section>  
+        <div class="items style3 small onscroll-fade-in">
+                <ul class="actions">
+                    <li><a href="/accounts/signup" class="button primary fit small">회원가입</a></li>
+                </ul>
+            
+            {% if user.is_authenticated %}
+                <ul class="actions">
+                    <li><a href="/accounts/logout" class="button primary fit small">로그아웃</a></li>
+                </ul>
+                {{ user.username }} 님 안녕하세요 :)
+            
+            {% else %}
+                <ul class="actions">
+                    <li><a href="{% provider_login_url 'google' %}" class="button primary fit small">구글 로그인</a></li>
+                </ul>
+                로그인 후 방명록을 쓸 수 있습니다.
+
+            {% endif %}
+
+        </div>
+    </section>
+
     <section class="wrapper style1 align-center">  
             <div class="items style3 small onscroll-fade-in">
                 <section>
@@ -32,6 +58,7 @@
                     <a href="{% url 'blogNew' %}" class="icon solid style2 fas fa-pen-nib"></a>
                     <p>방명록 남기기</p>
                 </section>
+                
         </div>
     </section>
 
