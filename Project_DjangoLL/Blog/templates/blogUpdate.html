@@ -1,5 +1,6 @@
-<!DOCTYPE html>
 {% load static %}
+<!DOCTYPE html>
+
 <head>
 <!-- CSS only -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -9,7 +10,7 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
-<title>방명록</title>
+<title>방명록 수정하기</title>
 <link rel="stylesheet" href="{% static 'css/main.css' %}" />
 
 </head>
@@ -17,7 +18,7 @@
 
     <section class="wrapper style1 align-center">
         <div class="inner">
-            <h1>방명록</h1>
+            <h1>방명록 수정</h1>
         </div>
     </section>
     
@@ -31,28 +32,28 @@
     <br>
 
     <div class="container">
-       <section class="wrapper style1 align-center">
-        <p>'{{blog_detail.writer}}'님이 남긴 글</p>
-        <p>{{blog_detail.pub_date}}</p>
-    </section>
-       
-       <br>
-       <h2>{{blog_detail.title}}</h2>
-       <p>{{blog_detail.body}}</p>
-       {% if blog_detail.image %}
-       <img src="{{blog_detail.image.url}}" height=400>
-       {% endif %}
-
-       <br>
-
-        <ul class="actions small">
-            <li><a href="{% url 'update' blog_detail.id %}" class="button small">수정</a></li>
-            <li><a href="{% url 'delete' blog_detail.id %}" class="button primary small">삭제</a></li>
-        </ul>
-
-        <br>
-        <br>
- 
+        <form action="{% url 'update' blog_update.id %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h4>제목</h4>
+            <input type="text" name="title" value="{{ blog_update.title}}" autofocus required>
+            <br>
+            <br>
+            <h4>작성자</h4>
+            <input type="text" name="writer" value="{{ blog_update.writer}}" autofocus required>
+            <br>
+            <br>
+            <h4>본문</h4>
+            <textarea name="body" cols=40, rows=10>{{ blog_update.body }}</textarea>
+            <br>
+            <br>
+            <div>{% if blog_update.image %}<p>등록된 이미지: <a href="{{ blog_update.image.url }}">{{ blog_update.image.url }}</a>
+            </p>{% endif %}</div>
+            <h4>새로운 이미지 첨부</h4>
+            <input type="file" name="images" accept="image/*">
+            <br>
+            <br>
+            <input type="submit" value="저장">
+        </form>
     </div>
 
 </body>
