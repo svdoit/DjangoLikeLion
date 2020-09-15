@@ -9,7 +9,7 @@ def guestbook(request):
     blog_list = Blog.objects.all()
     #블로그 모든 글들을 대상으로
    
-    paginator = Paginator(blog_list, 3)
+    paginator = Paginator(blog_list, 5)
     #블로그 객체 세 개를 한 페이지로 자르기
    
     page = request.GET.get('page')

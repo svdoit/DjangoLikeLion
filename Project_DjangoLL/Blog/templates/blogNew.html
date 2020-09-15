@@ -31,7 +31,7 @@
     <br>
 
     <div class="container">
-        <form action="{% url 'blogCreateFn' %}" method=POST enctype="multipar/form-data">
+        <form action="{% url 'blogCreateFn' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <h4>제목</h4>
             <input type="text" name="title" autofocus required>
@@ -46,7 +46,7 @@
             <br>
             <br>
             <h4>이미지 첨부</h4>
-            <input type="file" name="images" accept="images/*">
+            <input type="file" name="images" accept="image/*">
             <br>
             <br>
             <input type="submit" value="저장">
