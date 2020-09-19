@@ -36,7 +36,7 @@ def blogCreateView(request):
 
         blog_create.title = request.POST.get('title')
         blog_create.body = request.POST.get('body')
-        blog_create.writer = request.POST.get('writer')
+        blog_create.writer = request.user.first_name
         blog_create.pub_date = timezone.datetime.now()
         blog_create.image = request.FILES.get('image')
         blog_create.save()

@@ -33,6 +33,9 @@ body {
 	line-height: 1;
 }
 
+.loginout-buttons {
+	padding: 0rem 36rem 0rem 36rem;
+}
 
 ol, ul {
 	list-style: none;

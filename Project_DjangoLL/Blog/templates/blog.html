@@ -28,7 +28,7 @@
     <section class="wrapper style1 align-center">
         <div class="inner">
             {% if user.is_authenticated %}
-            {{ user.username }} 님 안녕하세요 :)
+            {{ user.first_name }} 님 안녕하세요 :)
 
             {% else %}
             로그인 후 방명록을 쓸 수 있습니다. 
@@ -38,7 +38,7 @@
     </section>
 
     <section class="wrapper style1 align-center">  
-        <div class="loginout buttons">
+        <div class="loginout-buttons">
             {% if user.is_authenticated %}
                 <ul class="actions">
                     <li><a href="/accounts/logout" class="button primary fit small">로그아웃</a></li>
