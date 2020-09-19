@@ -46,19 +46,23 @@ def blogCreateView(request):
 def update(request, blog_id):
     blog_update = get_object_or_404(Blog, pk = blog_id)
 
-    if request.method == 'POST':
-        if 'image' in request.FILES:
-            blog_update.image = request.FILES['image']
-        blog_update.title = request.POST['title']
-        blog_update.body = request.POST['body']
-        blog_update.writer = request.POST['writer']
+    if request.user == blog_update.writer:
+            
+        if request.method == 'POST':
+            if 'image' in request.FILES:
+                blog_update.image = request.FILES['image']
+            blog_update.title = request.POST['title']
+            blog_update.body = request.POST['body']
+            blog_update.writer = request.POST['writer']
 
-        blog_update.save()
+            blog_update.save()
 
-        return redirect('/guestbook/', blog_update.id)
-
-    else:
-        return render(request, 'blogUpdate.html', {'blog_update' : blog_update })
+            return redirect('/guestbook/', blog_update.id)
+      
+        else:
+            return render(request, 'blogUpdate.html', {'blog_update' : blog_update })
+    
+    raise PermissionDenied
 
 def delete(request, blog_id):
     blog_delete = get_object_or_404(Blog, pk = blog_id)
