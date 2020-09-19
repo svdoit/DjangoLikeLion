@@ -62,8 +62,15 @@
                     <p>홈</p>
                 </section>
                 <section>
+                    {% if user.is_authenticated %}
                     <a href="{% url 'blogNew' %}" class="icon solid style2 fas fa-pen-nib"></a>
                     <p>방명록 남기기</p>
+
+                    {% else %}
+                    <a href="{% provider_login_url 'google' %}" class="icon solid style2 fas fa-pen-nib"></a>
+                    <p>방명록 남기기</p> 
+
+                    {% endif %}
                 </section>
                 
         </div>
