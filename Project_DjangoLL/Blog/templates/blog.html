@@ -25,23 +25,30 @@
         </div>
     </section>
 
-    <section>  
-        <div class="items style3 small onscroll-fade-in">
-                <ul class="actions">
-                    <li><a href="/accounts/signup" class="button primary fit small">회원가입</a></li>
-                </ul>
-            
+    <section class="wrapper style1 align-center">
+        <div class="inner">
+            {% if user.is_authenticated %}
+            {{ user.username }} 님 안녕하세요 :)
+
+            {% else %}
+            로그인 후 방명록을 쓸 수 있습니다. 
+
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="wrapper style1 align-center">  
+        <div class="loginout buttons">
             {% if user.is_authenticated %}
                 <ul class="actions">
                     <li><a href="/accounts/logout" class="button primary fit small">로그아웃</a></li>
                 </ul>
-                {{ user.username }} 님 안녕하세요 :)
             
             {% else %}
                 <ul class="actions">
                     <li><a href="{% provider_login_url 'google' %}" class="button primary fit small">구글 로그인</a></li>
                 </ul>
-                로그인 후 방명록을 쓸 수 있습니다.
+                
 
             {% endif %}
 

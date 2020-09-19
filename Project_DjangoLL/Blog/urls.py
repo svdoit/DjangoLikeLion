@@ -12,7 +12,7 @@ urlpatterns = [
     path('update/<int:blog_id>/', views.update, name = "update"),
     path('delete/<int:blog_id>/', views.delete, name = "delete"),
     
-    path('account/', include('allauth.urls')),
+    path('accounts/', include('allauth.urls')),
 ]
 
 urlpatterns +=  static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
