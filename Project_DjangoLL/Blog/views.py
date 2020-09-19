@@ -62,6 +62,7 @@ def update(request, blog_id):
 
 def delete(request, blog_id):
     blog_delete = get_object_or_404(Blog, pk = blog_id)
-    blog_delete.delete()
-
-    return redirect('guestbook')
+    if request.user == blog_delete.writer:
+        blog_delete.delete()
+        return redirect('guestbook')
+    raise PermissionDenied

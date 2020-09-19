@@ -45,10 +45,14 @@
 
        <br>
 
+     
         <ul class="actions small">
             <li><a href="{% url 'update' blog_detail.id %}" class="button small">수정</a></li>
             <li><a href="{% url 'delete' blog_detail.id %}" class="button primary small">삭제</a></li>
         </ul>
+          <!--???-->
+    <!-- {% if user == blog_detail.writer %}  -->
+    <!-- {% endif %} -->
 
         <br>
         <br>
