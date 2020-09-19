@@ -102,15 +102,19 @@
 
                     {# First Previous 3of4 Next Last #}
                     <div class="container">
+                        {# 3of4 #}
+                        <span>{{posts.number}}</span>
+                        <span>of</span>
+                        <span>{{posts.paginator.num_pages}}</span>
+                    </div>
+
+                    <div class="container">
                         {# First Previous #}
                         {% if posts.has_previous %}
                         <a href="?page=1">First</a>
                         <a href="?page={{posts.previous_page_number}}">Previous</a>
                         {% endif %}
-                        {# 3of4 #}
-                        <span>{{posts.number}}</span>
-                        <span>of</span>
-                        <span>{{posts.paginator.num_pages}}</span>
+                        
                         {# Next Last #}
                         {% if posts.has_next %}                        
                         <a href="?page={{posts.next_page_number}}">Next</a>
